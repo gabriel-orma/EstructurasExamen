@@ -23,6 +23,16 @@ struct ForwardList {
         }
     }
 
+    void insert(ForwardNode* prev_node, long long val) {
+        if (prev_node == nullptr) return;
+
+        ForwardNode* nuevo = new ForwardNode;
+        nuevo->val = val;
+        
+        nuevo->next = prev_node->next;
+        prev_node->next = nuevo;
+    }
+
     long long front() {
         return head->val; 
     }
