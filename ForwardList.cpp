@@ -1,32 +1,25 @@
-const int MAX = 1000005;
 
-struct Node {
+struct ForwardNode {
     long long val;
-    Node* next;
+    ForwardNode* next;
 };
 
-Node memoria[MAX];
-int nodos_usados = 0;
-
-Node* crear_nodo(long long v) {
-    Node* nuevo = &memoria[nodos_usados++];
-    nuevo->val = v;
-    nuevo->next = nullptr;
-    return nuevo;
-}
-
 struct ForwardList {
-    Node* head = nullptr;
+    ForwardNode* head = nullptr;
 
     void push_front(long long val) {
-        Node* nuevo = crear_nodo(val);
+        ForwardNode* nuevo = new ForwardNode; 
+        nuevo->val = val;
         nuevo->next = head;
-        head = nuevo;
+        
+        head = nuevo; 
     }
 
     void pop_front() {
         if (head != nullptr) {
-            head = head->next;
+            ForwardNode* temp = head; 
+            head = head->next;                
+            delete temp;
         }
     }
 
